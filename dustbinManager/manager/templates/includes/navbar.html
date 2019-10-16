@@ -1,0 +1,147 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg " id="topnav">
+  <div class="container">
+
+    <!-- Toggler -->
+    <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon fe fe-menu text-white"></span>
+    </button>
+
+    
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse ml-auto order-lg-first" id="navbar">
+      <!-- Navigation -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link " href="#" id="topnavPages" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Info
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="topnavPages">
+            <li>
+              <a class="dropdown-item " href="{% url 'aboutus' %}">
+                About Rally Tanzania
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'contactus' %}">
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'faq' %}">
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'spectator' %}">
+                Specator Safety
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="topnavPages" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Rally
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="topnavPages">
+            <li>
+              <a class="dropdown-item " href="{% url 'drivers_navigators' %}">
+                Drivers and Navigators
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'standings' %}">
+                Championship Standings
+              </a>
+            </li>
+            <li data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+              <a class="dropdown-item " href="{% url 'show_events' %}">
+                Rally Events
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"
+            aria-haspopup="true" aria-expanded="false">
+            Clubs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'news' %}">
+            News
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="topnavPages" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Rally Media
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="topnavPages">
+            <li>
+              <a class="dropdown-item " href="{% url 'images' %}">
+                View Rally Photographs
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'videos' %}">
+                Watch Rally Videos
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+    {% if request.user.is_authenticated %}
+       <!-- Dropdown -->
+            <div class="dropdown">
+                <!-- Toggle -->
+                <a href="#" class="avatar avatar-sm dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {% if request.user.is_iaa_account %}
+                    <img src="/media/images/drivers/2019/02/24/user.png" alt="..." class="avatar-img rounded-circle">
+                  {% elif request.user.is_a_club %}
+                    <img src="{{ media }}{{ request.user.club.logo }}" alt="..." class="avatar-img rounded-circle">
+                  {% else %}
+                    <img src="{{ media }}{{ request.user.userprofile.profile_picture }}" alt="..." class="avatar-img rounded-circle">
+                  {% endif %}
+                </a>
+                <!-- Menu -->
+                <div class="dropdown-menu dropdown-menu-right" id="user-dropdown">
+                  <style>
+                    div#user-dropdown::after {
+                        left: 80%;
+                    }
+                  </style>
+                  {% if request.user.is_iaa_account %}
+                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                    <a href="{% url 'iaa_account' %}" class="dropdown-item">Account</a>
+                  {% else %}
+                    <a href="{% url 'show_user_account' %}" class="dropdown-item">Account</a>
+                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+    {% else %}  
+      <a href="{% url 'login' %}" class="btn btn-link mb-2 text-white ml-5">
+        Login
+      </a>
+      <a href="{% url 'register' %}" class="btn btn-rally btn-danger mb-2">
+        Sign Up
+      </a>
+    {% endif %}  
+    <div class="navbar-user">
+  </div> <!-- / .container -->
+</nav>
+

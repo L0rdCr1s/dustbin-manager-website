@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block home %}
+  {% include './sidebar.html' %}
+
+  {% if type == 'streets' %}
+     <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+      <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Streets
+                    </h4>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+              <div class="table-responsive mb-0" data-toggle="lists" data-lists-values="[&quot;goal-project&quot;, &quot;goal-status&quot;, &quot;goal-progress&quot;, &quot;goal-date&quot;]">
+                <table class="table table-sm table-nowrap card-table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <a href="#" class="text-success">
+                          Name
+                        </a>
+                      </th>
+                      <th>
+                        <a href="#" class="text-success">
+                          dustbin count
+                        </a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+                  {% for street in streets %}
+                    <tr>
+                      <td class="goal-project">
+                        <i class="fe fe-map text-warning mr-4"></i>
+                        <a href="{% url 'show_dustbins' street.id %}" class="text-dark">{{ street.name }}</a>
+                      </td>
+                      <td class="goal-status">
+                         <span class="text-dark">{{ street.my_dustbins.count }}</span>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+    </div>
+
+    {% elif type == 'collect'%}
+    <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+      <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Streets
+                    </h4>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+              <div class="table-responsive mb-0" data-toggle="lists" data-lists-values="[&quot;goal-project&quot;, &quot;goal-status&quot;, &quot;goal-progress&quot;, &quot;goal-date&quot;]">
+                <table class="table table-sm table-nowrap card-table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <a href="#" class="text-success">
+                          Name
+                        </a>
+                      </th>
+                      <th>
+                        <a href="#" class="text-success">
+                          dustbin count
+                        </a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+                  {% for street in streets %}
+                    <tr>
+                      <td class="goal-project">
+                        <i class="fe fe-map text-warning mr-4"></i>
+                        <a href="{% url 'dustbin_collect' street.id %}" class="text-dark">{{ street.name }}</a>
+                      </td>
+                      <td class="goal-status">
+                         <span class="text-dark">{{ street.my_dustbins.count }}</span>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+    </div>
+  {% else %}
+
+     <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+      <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Billing
+                    </h4>
+                  </div>
+                </div> <!-- / .row -->
+              </div>
+              <div class="table-responsive mb-0" data-toggle="lists" data-lists-values="[&quot;goal-project&quot;, &quot;goal-status&quot;, &quot;goal-progress&quot;, &quot;goal-date&quot;]">
+                <table class="table table-sm table-nowrap card-table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <a href="#" class="text-success">
+                          Name
+                        </a>
+                      </th>
+                      <th>
+                        <a href="#" class="text-success">
+                          dustbin count
+                        </a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+                  {% for street in streets %}
+                    <tr>
+                      <td class="goal-project">
+                        <i class="fe fe-map text-warning mr-4"></i>
+                        <a href="{% url 'billing_dustbins' street.id %}" class="text-dark">{{ street.name }}</a>
+                      </td>
+                      <td class="goal-status">
+                         <span class="text-dark">{{ street.my_dustbins.count }}</span>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+              </div>
+            </div>
+  </div>
+  {% endif %}
+ 
+{% endblock %}

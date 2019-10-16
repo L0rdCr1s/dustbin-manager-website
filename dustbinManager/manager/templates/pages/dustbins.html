@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block home %}
+  {% include './sidebar.html' %}
+
+  {% if type == 'streets' %}
+     <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+
+
+
+                <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Dustbins at {{ street.name }}
+                    </h4>
+
+                  </div>
+                  <div class="col-auto">
+
+                   
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="drivers-tab" data-toggle="tab" href="#drivers" role="tab" aria-controls="drivers" aria-selected="true">On Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="navigators-tab" data-toggle="tab" href="#navigators" role="tab" aria-controls="navigators" aria-selected="false">Full dustbins</a>
+                        </li>
+                    </ul>
+
+                  </div>
+                </div> <!-- / .row -->
+
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane show active fade" id="drivers" role="tabpanel" aria-labelledby="drivers-tab">
+                    <div class="table-responsive mb-0" data-toggle="lists">
+                        <table class="table table-sm table-nowrap card-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <a href="#" class="text-success">
+                                  <i class="fe fe-slack text-success mr-3"></i>Number
+                                </a>
+                              </th>
+                              <th>
+                                <a href="#" class="text-success">
+                                  payment
+                                </a>
+                              </th>
+                              <th>
+                                <a href="#" class="text-success">
+                                  action
+                                </a>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="list">
+                          {% for dustbin in street.my_dustbins.all %}
+                            {% if dustbin.is_full %}
+                            {% else %}
+                              <tr>
+                                <td class="goal-project">
+                                  <a href="" class="text-dark">{{ dustbin.number }}</a>
+                                </td>
+                                <td class="goal-project">
+                                  {% if dustbin.is_paid %} 
+                                    <i class="fe fe-check-circle text-success mr-4"></i> paid
+                                  {% else %}
+                                    <i class="fe fe-x-circle text-danger mr-4"></i> not paid
+                                  {% endif %}
+                                </td>
+                                <td class="goal-status">
+                                  <span class="text-dark">
+                                    <a href="{% url 'change_status' dustbin.id 1 %}" class="btn btn-secondary btn-sm mb-2">set full</a>
+                                  </span>
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navigators" role="tabpanel" aria-labelledby="navigators-tab">
+                
+                  <div class="table-responsive mb-0" data-toggle="lists">
+                        <table class="table table-sm table-nowrap card-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <a href="#" class="text-success">
+                                  <i class="fe fe-slack text-success mr-3"></i>Number
+                                </a>
+                              </th>
+                              <th>
+                                <a href="#" class="text-success">
+                                  payment
+                                </a>
+                              </th>
+                              <th>
+                                <a href="#" class="text-success">
+                                  action
+                                </a>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="list">
+                          {% for dustbin in street.my_dustbins.all %}
+                            {% if dustbin.is_full %}
+                              <tr>
+                                <td class="goal-project">
+                                  <a href="" class="text-dark">{{ dustbin.number }}</a>
+                                </td>
+                                <td class="goal-project">
+                                  {% if dustbin.is_paid %} 
+                                    <i class="fe fe-check-circle text-success mr-4"></i> paid
+                                  {% else %}
+                                    <i class="fe fe-x-circle text-danger mr-4"></i> not paid
+                                  {% endif %}
+                                </td>
+                                <td class="goal-status">
+                                  <span class="text-dark">
+                                    <i class="fe fe-trash-2 text-danger mr-2"></i> dustbin full
+                                  </span> 
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                </div>
+                
+              </div>
+            </div>
+
+
+
+
+
+
+              
+            </div>
+  </div>
+  {% elif type == 'for_collect' %}
+    <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+
+
+
+                <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Dustbins at {{ street.name }}
+                    </h4>
+
+                  </div>
+                  
+                </div> <!-- / .row -->
+
+              </div>
+              <div class="card-body">
+                  <div class="tab-pane show active fade" id="drivers" role="tabpanel" aria-labelledby="drivers-tab">
+                    <div class="table-responsive mb-0" data-toggle="lists">
+                        <table class="table table-sm table-nowrap card-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <a href="#" class="text-success">
+                                  <i class="fe fe-slack text-success mr-3"></i>Number
+                                </a>
+                              </th>
+                             
+                              <th>
+                                <a href="#" class="text-success">
+                                  action
+                                </a>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="list">
+                          {% for dustbin in street.my_dustbins.all %}
+                            {% if dustbin.is_paid and dustbin.is_full%}
+                            <tr>
+                                <td class="goal-project">
+                                  <a href="" class="text-dark">{{ dustbin.number }}</a>
+                                </td>
+                                
+                                <td class="goal-status">
+                                  <span class="text-dark">
+                                    <a href="{% url 'change_collect_status' dustbin.id 0 %}" class="btn btn-success btn-sm mb-2">collected</a>
+                                  </span>
+                                </td>
+                              </tr>
+                              
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            
+                </div>
+                
+              </div>
+            </div>
+
+
+
+
+
+
+              
+            </div>
+  </div>
+  {% else %}
+     <div class="main-content">
+
+        <div class="card">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <!-- Heading -->
+                    <span class="h2 mb-0">
+                      SMART SOLID WASTE MANAGEMENT AND COLLECTION SYSTEM AT KARIAKOO
+                    </span>
+                </div> <!-- / .row -->
+
+              </div>
+            </div>
+
+
+
+
+                <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                
+                    <!-- Title -->
+                    <h4 class="card-header-title">
+                      Dustbins at {{ street.name }}
+                    </h4>
+
+                  </div>
+                  <div class="col-auto">
+
+                   
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="drivers-tab" data-toggle="tab" href="#drivers" role="tab" aria-controls="drivers" aria-selected="true">Not Paid</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="navigators-tab" data-toggle="tab" href="#navigators" role="tab" aria-controls="navigators" aria-selected="false">Paid</a>
+                        </li>
+                    </ul>
+
+                  </div>
+                </div> <!-- / .row -->
+
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane show active fade" id="drivers" role="tabpanel" aria-labelledby="drivers-tab">
+                    <div class="table-responsive mb-0" data-toggle="lists">
+                        <table class="table table-sm table-nowrap card-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <a href="#" class="text-success">
+                                  <i class="fe fe-slack text-success mr-3"></i>Number
+                                </a>
+                              </th>
+                             
+                              <th>
+                                <a href="#" class="text-success">
+                                  action
+                                </a>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="list">
+                          {% for dustbin in street.my_dustbins.all %}
+                            {% if dustbin.is_paid %}
+                            {% else %}
+                              <tr>
+                                <td class="goal-project">
+                                  <a href="" class="text-dark">{{ dustbin.number }}</a>
+                                </td>
+                                
+                                <td class="goal-status">
+                                  <span class="text-dark">
+                                    <a href="{% url 'change_payment_status' dustbin.id 1 %}" class="btn btn-secondary btn-sm mb-2">is paid</a>
+                                  </span>
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="navigators" role="tabpanel" aria-labelledby="navigators-tab">
+                
+                  <div class="table-responsive mb-0" data-toggle="lists">
+                        <table class="table table-sm table-nowrap card-table">
+                          <thead>
+                            <tr>
+                              <th>
+                                <a href="#" class="text-success">
+                                  <i class="fe fe-slack text-success mr-3"></i>Number
+                                </a>
+                              </th>
+                              <th>
+                                <a href="#" class="text-success">
+                                  action
+                                </a>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="list">
+                          {% for dustbin in street.my_dustbins.all %}
+                            {% if dustbin.is_paid %}
+                              <tr>
+                                <td class="goal-project">
+                                  <a href="" class="text-dark">{{ dustbin.number }}</a>
+                                </td>
+                                <td class="goal-status">
+                                  <span class="text-dark">
+                                    <a href="{% url 'change_payment_status' dustbin.id 0 %}" class="btn btn-warning btn-sm mb-2 text-white">payment expire</a>
+                                  </span> 
+                                </td>
+                              </tr>
+                            {% endif %}
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                </div>
+                
+              </div>
+            </div>
+
+
+
+
+
+
+              
+            </div>
+  </div>
+  {% endif %}
+ 
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    {% include 'includes/csslinks.html' %}
+
+    <title>WASTE COLLECTOR</title>
+  </head>
+  <body>
+
+    <div class="container-fluid pt-4">
+      <div style="flex: 1 0 auto;">
+          {% block home %}{% endblock %}
+      </div>
+      
+    </div>
+    {% include 'includes/jslinks.html' %}
+  </body>
+</html>

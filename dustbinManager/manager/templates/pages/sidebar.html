@@ -1,0 +1,85 @@
+  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light"
+      id="sidebar">
+      <div class="container-fluid">
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#sidebarCollapse" aria-controls="sidebarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% comment %} <!-- Brand -->
+        <a href="#" class="avatar avatar-xxl ml-5 mt-4">
+          <img src="{{ media }}{{request.user.userprofile.profile_image}}" class="avatar-img rounded-circle" alt="...">
+        </a> {% endcomment %}
+
+        <!-- User (xs) -->
+        <div class="navbar-user d-md-none">
+
+          <!-- Dropdown -->
+          <div class="dropdown">
+
+            <!-- Toggle -->
+            <a href="#!" id="sidebarIcon" class="dropdown-toggle" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="avatar avatar-sm avatar-online">
+                <img src="{{ static_url }}/assets/img/avatars/profiles/avatar-1.jpg"
+                  class="avatar-img rounded-circle" alt="...">
+              </div>
+            </a>
+
+            <!-- Menu -->
+            <div class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="sidebarIcon">
+              <a href="profile-posts.html" class="dropdown-item">Profile</a>
+              <a href="settings.html" class="dropdown-item">Settings</a>
+              <hr class="dropdown-divider">
+              <a href="sign-in.html" class="dropdown-item">Logout</a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidebarCollapse">
+    
+
+        <div class="avatar avatar-xxl mt-5">
+            <img src="{{ static_url }}assets/img/illustrations/brand.jpg" alt="..." class="avatar-img rounded">
+        </div>
+          <!-- Navigation -->
+          <ul class="navbar-nav mt-5">
+          <li class="nav-item">
+                {% if type == 'collect' or type == 'for_collect' %}
+                    <a class="nav-link active" href=" {% url 'collect' %} ">
+                    {% else %}
+                    <a class="nav-link" href=" {% url 'collect' %} ">
+                {% endif %}
+                <i class="fe fe-trash-2"></i> Ready to collect
+              </a>
+            </li>
+            <li class="nav-item">
+                {% if type == 'streets' %}
+                    <a class="nav-link active" href=" {% url 'get_streets' %} ">
+                    {% else %}
+                    <a class="nav-link" href=" {% url 'get_streets' %} ">
+                {% endif %}
+                <i class="fe fe-map-pin"></i> Streets
+              </a>
+            </li>
+            <li class="nav-item">
+                {% if type == 'billing' %}
+                    <a class="nav-link active" href=" {% url 'billing' %} ">
+                    {% else %}
+                    <a class="nav-link" href=" {% url 'billing' %} ">
+                {% endif %}
+                <i class="fe fe-dollar-sign"></i> Billing
+              </a>
+            </li>
+          </ul>
+        </div> <!-- / .navbar-collapse -->
+
+      </div>
+    </nav>
